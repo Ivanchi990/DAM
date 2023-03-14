@@ -1,0 +1,18 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.DamBITE" parent="Theme.MaterialComponents.DayNight">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue_700</item>
+        <item name="colorPrimaryVariant">@color/blue_900</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/blue_grey_200</item>
+        <item name="colorSecondaryVariant">@color/blue_grey_700</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <!-- Accent color. -->
+        <item name="colorAccent">@color/orange_400</item>
+        <!-- Background color. -->
+        <item name="android:windowBackground">@color/white</item>
+        <!-- Customize your theme here. -->
+    </style>
+</resources>
