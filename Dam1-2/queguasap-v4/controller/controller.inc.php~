@@ -1,0 +1,163 @@
+<?php
+
+/*
+*	Muestra el contenido de la parte central de la página
+*	E:
+*	S:
+*	SQL:
+*/
+function show_content() {
+	if ($_SERVER['REQUEST_METHOD'] == 'GET') {	// GET
+		if (!isset($_GET['cmd'])){						// carga inicial de la página
+			show_loging();
+		}
+		else {
+			switch ($_GET['cmd']) {						// vemos qué llegó por el GET
+				case 'chats':
+					$chats =  dame_chats();				// pedimos los chats a la BD
+					show_chats($chats);					// los mostramos
+					break;
+
+				case 'chat':
+					$chats =  dame_chat();				// pedimos los chats a la BD
+					show_chat($chat);					// los mostramos
+					break;
+
+				case 'perfil':
+					show_perfil();
+					break;
+
+				case 'ajustes':
+					show_ajustes();
+					break;
+
+				case 'logout':
+					show_loging();
+					show_msg("Ha cerrado la sesión");
+					break;	
+
+				default:
+					"Error, operación no permitida";
+					break;
+			}
+
+		}
+	}
+	else {														// POST
+		if (isset($_POST['login'])) {
+
+			if (isset($_SESSION['user'])) {				// login ok en actualizar_sesion()
+				$chats =  dame_chats();				
+				show_chats($chats);
+				}
+			else {
+				show_loging();
+			}
+			
+		}
+
+		elseif (isset($_POST['contestar'])) {
+			
+			if (tamano_img()) {
+
+				if (guardar_mensaje()) {
+					show_msg("Mensaje enviado");
+					$chats =  dame_chats();				
+					show_chats($chats);
+				}
+				else {
+					show_msg("Error no enviado");
+				}
+				
+			}
+
+			else {
+				show_msg("Error, imagen demasiado grande");
+			}
+		}
+
+		elseif (isset($_POST['editar'])) {
+			
+			if (maximo_caracteres_estado()) {
+				
+				if (perfil_modificado()) {
+					show_msg("Perfil modificado");
+					show_chats();
+				}
+				else {
+					show_msg("Error al modificar el perfil");
+				}
+
+			}
+			else {
+				show_msg("Error máximo de caracteres");
+			}
+
+			
+		}
+
+		elseif (isset($_POST['guardar_color'])) {
+			
+			if (guardar_color()) {
+				show_msg("Color cambiado");
+				$chats =  dame_chats();				
+				show_chats($chats);
+			}
+			else {
+				show_msg("Error no se cambio de color");
+			}
+		}
+
+		elseif (isset($_POST['backup'])) {
+			
+			if (backup_chat()) {
+				show_msg("backup guardado");
+				$chats =  dame_chats();				
+				show_chats($chats);
+			}
+			else {
+				show_msg("Error no realizar el backup");
+			}
+		}
+		
+	}
+}
+
+/*
+* Realiza algunas acciones relacionadas con la sesión
+* S: 
+* SQL:
+*/
+function actualizar_sesion() {
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {		// POST
+
+		if (isset($_POST['login'])) {
+
+			if (login_ok()) {
+				$_SESSION['user'] = $_POST['numero'];	// Creamos la sesión
+				/* Esta línea a continuación se usa si tuvieramos una administración 
+				* en la aplicación (teléfono 611111111)
+				* El resto de funciones (por ejemplo show_menu) miran
+				* este valor para saber si tienen que mostrar más o menos opciones
+				*/
+				$_SESSION['admin'] = ($_POST['numero'] == '611111111');
+			}
+
+		}
+
+	} else {														// GET
+
+		if (isset($_GET['cmd'])) {
+
+			if  ($_GET['cmd'] == 'logout') {
+
+				unset($_SESSION);
+				session_destroy();
+			}
+
+		}
+	}
+}
+
+
+?>
