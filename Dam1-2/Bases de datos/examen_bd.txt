@@ -1,0 +1,48 @@
+create table Usuario{
+id int auto_increment primary key,
+nombre varchar(30) not null unique,
+edad int,
+tutor int,
+insignia int,
+foreign key (tutor) references Usuario(id),
+foreign key (insignia) references Insignia(id)
+};
+
+create table Insignia{
+id int auto_increment, 
+primary key(id),
+descripcion varchar(50) not null unique, 
+primary key(descripcion)
+};
+
+create table Tipo_accion{
+id int cerofill auto_increment ,
+primary key(id),
+descripcion varchar(30) not null
+};
+
+create table Accion{
+id int cerofill,
+primary key(id),
+foreign key (Tipo_accion) references Tipo_accion(id),
+dia date,
+primary key(dia)
+};
+
+create table Objetivo{
+nombre varchar(20),
+primary key(nombre)
+};
+
+create table Hacer{
+usuario int foreign key (Usuario) references (Usuario),
+tipo_a cerofill,
+foreign key (Accion) references Accion(Accion),
+dia_a date foreign key (Accion) references Accion(dia),
+objetivo varchar(20) foreign key (Objetivo) references Objetivo(Objetivo),
+primary key(objetivo)
+};
+
+create table Exito{
+tipo_a int cerofill
+};

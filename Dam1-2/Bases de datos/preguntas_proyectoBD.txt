@@ -1,0 +1,54 @@
+										Preguntas proyectoBD
+
+-Pregunta 1:
+Búsqueda entre 2 tablas diferentes que estén relacionadas por claves ajenas. Un dato ha de provenir de una tabla y los demás de otra. Condiciones de ambas tablas y usando funciones de transformación (date_format, datediff, substring...)
+
+Enunciado:
+Selecciona los equipos junto a su estadio que se halla construido a partir del 2000 y tenga un aforo mayor al 2% del aforo del wizink center
+pista(el codigo de la aficion se forma uniendo las dos primeras letras del nombre del equipo un guión y las dos últimas letras de su estadio)
+
+Solución:
+
+select e.nombre as equipo, es.nombre, date_format(es.fecha_construccion, "%M %d %Y") as fecha_construccion, concat(left(e.nombre, 2), "-", right(es.nombre, 2)) as cod_aficion from equipo e join estadio es on e.id_equipo = es.id_equipo where year(es.fecha_construccion) > 2000 and es.aforo > pow((1748 * 0.02), 2); 
+
+
+-Pregunta 2:
+Búsqueda entre 3 tablas diferentes que estén relacionadas por claves ajenas y condiciones que afecten a todas. Al menos uno o dos datos han de provenir de cada tabla (no cuenta el campo que hace de identificador. Condiciones de dos tablas.
+
+Enunciado:
+
+Selecciona el nombre del equipo con las tres primeras letras como Iniciales, el año de su fecha de creación,  contando el numero de jugadores por equipo, el nombre y DNI del entrenador de cada equipo cuando la edad del jugador sea menor de 30 años y la edad del entrenador sea mayor de 28 años y el año de creación esté entre 1980 y el año en el que ganó España el mundial.
+
+Solución:
+
+select substring(eq.nombre,1,3)as Iniciales,year(eq.fecha_creacion) as Año, count(j.nombre) as numero_jugadores, e.nombre as Nombre_entrenador, e.dni as DNI_entrenador from equipo eq join entrenador e join jugador j on eq.id_equipo = j.id_equipo and eq.id_equipo = e.id_equipo where j.edad <= 30 and e.edad > 28 and year(eq.fecha_creacion) between 1980 and 2010 group by eq.id_equipo, e.nombre, e.dni;
+
+-Pregunta 3:
+Búsqueda entre 3 tablas diferentes usando funciones de agregación que impliquen condiciones de una tabla a otra. De cada tabla debe provenir al menos un dato o ser el dato agregado (el máximo, la suma...).
+
+Enunciado:
+Selecciona el equipo, junto a su numero de jugadores y el nombre del estadio de los equipos con más de 37 jugadores, cuando el doble de la media de edad de los jugadores supere al numero de jugadores.
+
+Solución:
+select e.nombre as equipo, count(j.nombre) as num , es.nombre as estadio from equipo e join jugador j join estadio es on j.id_equipo = e.id_equipo and es.id_equipo = e.id_equipo where es.aforo>50000 group by e.nombre, es.nombre having (num>37 and (truncate(avg(j.edad), 0) * 2) > count(j.nombre));
+
+-Pregunta 4:
+Búsqueda entre 4 tablas diferentes con funciones de agregación que impliquen condiciones de una tabla a otra. De cada tabla debe provenir al menos un dato o ser el dato agregado.
+
+Enunciado:
+Que equipos habiendo ganado la Champion, no ganaron una divisa en la decada de los ochenta.
+
+Solución:
+
+SELECT e.nombre as nombre_equipo, t.nombre as torneo, p.descripcion as premio from equipo e join torneo t join gana_torneo g join premios p on e.id_equipo = g.id_equipo and t.id_torneo = g.id_torneo and p.cod_premio = g.cod_premio where year(g.fvictoria) BETWEEN 1980 and 1990 and t.nombre = "Champion" and p.descripcion not like "%€%" group by e.nombre, p.descripcion;
+
+-Pregunta 5:
+Búsqueda en dos tablas similares, realizando la operación de unión.
+
+Enunciado: 
+¿Qué jugadores y entrenadores que no empiece su nombre por A y acabe su dni en B cuando juegan y cuáles no acaban en M y empiezan por B cuando entrenan?
+
+Solución:
+
+select nombre , edad, dni from jugador where nombre not like "A%" and dni like"%B" union select nombre, edad, dni from entrenador where dni not like "%M" and nombre like "B%";
+

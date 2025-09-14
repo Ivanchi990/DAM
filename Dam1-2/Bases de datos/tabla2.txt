@@ -1,0 +1,7 @@
+create table usuario(
+id auto_increment primary key,
+nombre varchar(30) not null,
+edad int,
+tutor int foreign key usuario,
+insignia int foreign key insignia
+);

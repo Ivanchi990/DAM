@@ -1,0 +1,39 @@
+select e.sector, e.nombre, count(u.nombre) as usuario, concat(avg(p.cantidad), " / ", avg(p.cantidad) * 92.7690 ), avg(timestampdiff(year, u.fecha_nac, curdate())) as media_edad, sum(c.likes) as likes_totales, sum(c.dislikes) as dislikes_totales
+from Empresa e join Contenido c join Patrocina p join Usuario u join Paga pa
+on e.id = p.id_empresa and p.id_contenido = c.id_contenido and u.id_usuario = pa.id_usuario and pa.id_empresa = p.id_empresa
+where e.sector like "%e%o%" and p.cantidad > 401 and c.categoria not like "%Belleza%" and length(u.nombre) > 5
+group by e.nombre, e.sector
+having count(u.nombre) > 2;
+
+
+select u.nombre as id_usuario, count(c.id_contenido) as vistos, co.nombre as ultimo_visto
+from Usuario u join Consume c join Contenido co
+on u.id_usuario = c.id_usuario and co.id_contenido = c.id_contenido
+group by u.id_usuario
+having vistos > 10;
+
+
+
+select max(fecha_lucha) as fecha from Disputa where monstruo1 in(select nombre_monstruo from Monstruo where nombre_clase = "Wyvern volador") and monstruo2 in(select nombre_monstruo from Monstruo where nombre_clase = "Wyvern volador");
+
+select min(fecha_lucha) as fecha from Disputa where monstruo1 in(select nombre_monstruo from Monstruo where nombre_clase = "Wyvern volador") and monstruo2 in(select nombre_monstruo from Monstruo where nombre_clase = "Wyvern volador");
+
+
+select o.nombre_habilidad, concat(count(*), "/", puntos) as puntos_totales 
+from Habilidad h join Otorga o join (select nombre_armadura from Otorga where o.nombre_habilidad like "Ataque") ar
+on h.nombre_habilidad = o.nombre_habilidad and o.nombre_armadura = ar.nombre_armadura
+where o.nombre_armadura in(select nombre_armadura from Otorga where o.nombre_habilidad like "Ataque")
+group by o.nombre_habilidad;
+
+
+
+
+
+
+
+
+
+
+
+
+(select concat("Armadura: ", a.nombre_armadura),  e.rareza from Armadura a join Equipo e on e.nombre_equipo = a.nombre_armadura) union (select concat("Arma: ", a.nombre_arma), e.rareza from Arma a join Equipo e on e.nombre_equipo = a.nombre_arma) order by rareza desc limit 10; 

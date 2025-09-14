@@ -1,0 +1,6 @@
+select year(fechaAlta) as año, (avg(cuantia) - (select avg(cuantia) from polizas where year(fechaAlta) = año) as difMedia from polizas where nombreAseguradora = "Direct Seguros" group by año;
+
+select nombre, apellido1, date_format(fechaNac, "%Y-%W") as diaNacimiento from personas where DNI in (select DNI from propietarios where matricula in (select matricula from polizas where (!(fechaBaja is null) or Year(fechaAlta) < 2001) and nombreAseguradora in (select nombre from aseguradoras where telefono like "%00%"))) order by diaNacimiento;
+
+select fechaNac from personas where dni in(select dni from propietarios where (substring(matricula, 1, 1) = substring(matricula, 3, 1)) and substring(matricula, 2, 1) != substring(matricula, 1, 1) group by dni having(count(substring(matricula, 1, 1)) >= 1)) group by dni ;
+

@@ -1,0 +1,56 @@
+CREATE TABLE Estudio
+(
+id int auto_increment,
+nombre varchar(30) NOT NULL,
+CONSTRAINT PK_nombre_estudio PRIMARY KEY (id)
+);
+
+CREATE TABLE Curso
+(
+curso varchar(5) NOT NULL,
+CONSTRAINT PK_curso_curso PRIMARY KEY (curso)
+);
+
+CREATE TABLE Modulo
+(
+id int auto_increment,
+nombre varchar(30) NOT NULL,
+horas_sem int NOT NULL default 6,
+CONSTRAINT PK_id_modulo PRIMARY KEY (id)
+);
+
+CREATE TABLE Asignatura
+(
+id int,
+est int,
+curso varchar(5),
+CONSTRAINT PK_asignatura PRIMARY KEY (id, est, curso),
+CONSTRAINT FK_id_asignatura FOREIGN KEY (id) REFERENCES Modulo(id) on delete restrict on update cascade,
+CONSTRAINT FK_est_asignatura FOREIGN KEY(est) REFERENCES Estudio (id) on update cascade,
+CONSTRAINT FK_curso_asignatura FOREIGN KEY (curso) REFERENCES Curso(curso) on delete cascade
+);
+
+CREATE TABLE Alumno
+(
+id int(5) zerofill PRIMARY KEY,
+nombre varchar(30) NOT NULL,
+dni varchar(9) NOT NULL unique key,
+fechanac date default "1940-01-01"
+);
+
+CREATE TABLE Asiste
+(
+alumno int(5) zerofill,
+asignatura int,
+estudio int,
+curso varchar(5),
+CONSTRAINT PK_asiste PRIMARY KEY (alumno, asignatura, estudio, curso),
+CONSTRAINT FK_alumno_asiste FOREIGN KEY (alumno) REFERENCES Alumno(id) on delete cascade on update cascade,
+CONSTRAINT FK_asignatura_asiste FOREIGN KEY (asignatura, estudio, curso) REFERENCES Asignatura(id, est, curso) on delete restrict
+);
+
+INSERT INTO Estudio values ("Informática"), ("Sanidad");
+
+INSERT INTO Curso values ("19-20"), ("20-21");
+
+INSERT INTO Modulo values ("Modulo1", default)
