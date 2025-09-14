@@ -1,0 +1,39 @@
+Calcula la IP de red:
+-Calcula la IP de Broadcast
+-Número de IP´s posibles
+-Dispositivos que se pueden conectar
+
+172.18.158.66/26
+192.168.170.226/30
+172.19.129.198/27
+
+
+172.18.158.66/26
+32-26=6/Utilizará 6 bits para hosts
+
+192.168.170.226/30
+32-30=2/Utilizará 2 bits para hosts
+
+172.19.129.198/27
+32-27=5/Utilizará 5 bits para hosts
+
+
+  172       18     158       66
+10101100  10010  10011110  1 000010
+
+  192       168       170       226
+11000000  10101000  10101010  111000 10
+
+  172       19     129        198
+10101100  10011  10000001  110 00110
+
+
+10101100  10010  10011110  1000010 IP inicial
+10101100  10010  10011110  1000000 IP de red
+10101100  10010  10011110  1000011 Primer host
+10101100  10010  10011110  1111110 Ultimo host/Puede contener 63 hosts
+10101100  10010  10011110  1111111 IP de broadcast
+Se pueden conectar 61 dispositivos
+
+
+

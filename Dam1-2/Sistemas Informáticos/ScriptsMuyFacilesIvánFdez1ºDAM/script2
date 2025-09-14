@@ -1,0 +1,20 @@
+#!/bin/bash
+
+clear
+
+if [[ -e 25 ]] && [[ -f 25 ]]
+then
+	gzip -c 25 > 25.gz
+	echo "Fichero 25 comprimido con éxito."
+else
+	echo "El fichero 25 no existe."
+fi
+
+if [[ -e 29 ]] && [[ -f 29 ]]
+then
+	gzip -c 29 > 29.gz
+	echo "Fichero 29 comprimido con éxito"
+else
+	echo "El fichero 29 no existe."
+fi
+

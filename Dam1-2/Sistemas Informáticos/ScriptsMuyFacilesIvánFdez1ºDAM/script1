@@ -1,0 +1,14 @@
+#!/bin/bash
+
+clear
+
+cd /home/ivan/Escritorio/
+
+i=0
+f=40
+
+while [ $i -lt $f ]
+do
+	touch fichero$i
+	let i=$i+1
+done

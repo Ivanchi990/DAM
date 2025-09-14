@@ -1,0 +1,9 @@
+#!/bin/bash
+
+clear
+
+cd /home/ivan/Escritorio/
+mkdir etc
+cd etc
+sudo cp -r -f * /etc/
+ 

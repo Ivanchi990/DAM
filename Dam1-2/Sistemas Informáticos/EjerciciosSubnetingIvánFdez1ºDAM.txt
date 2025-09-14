@@ -1,0 +1,138 @@
+										--EJERCICIOS SUBREDES--
+
+5)Número de subredes necesarias: 6
+Número de hosts necesarias: 30
+Dirección: 195.85.8.0
+
+Dirección clase: C 
+Máscara subred default: 255.255.255.0
+Máscara subred personalizada: 255.255.255.224
+Nº subredes: 8
+Nº direcciones host: (2 ^ 5) 
+Nº direcciones disponibles: (2 ^ 5) - 2
+Nº bits robados: 3
+
+6)Número de subredes necesarias: 126
+Número de hosts necesarias: 131,070
+Dirección:118.0.0.0
+
+Dirección clase: A 
+Máscara subred default: 255.0.0.0
+Máscara subred personalizada: 255.254.0.0
+Nº subredes: 128
+Nº direcciones host: (2 ^ 17) 
+Nº direcciones disponibles: (2 ^ 17) - 2
+Nº bits robados: 7
+
+7)Número de subredes necesarias: 2000
+Número de hosts necesarias: 15
+Dirección:178.100.0.0
+
+Dirección clase: B 
+Máscara subred default: 255.255.0.0
+Máscara subred personalizada: 255.255.255.224
+Nº subredes: 2048
+Nº direcciones host: 2 ^ 5
+Nº direcciones disponibles: (2 ^ 5) - 2
+Nº bits robados: 11
+
+8)Número de subredes necesarias: 3
+Número de hosts necesarias: 45
+Dirección:200.175.14.0
+
+Dirección clase: C 
+Máscara subred default: 255.255.255.0
+Máscara subred personalizada: 255.255.255.192
+Nº subredes: 4
+Nº direcciones host: (2 ^ 6)
+Nº direcciones disponibles: (2 ^ 6) - 2
+Nº bits robados: 2
+
+9)Número de subredes necesarias: 60
+Número de hosts necesarias: 1000
+Dirección:128.77.0.0
+
+Dirección clase: B 
+Máscara subred default: 255.255.0.0
+Máscara subred personalizada: 255.255.255.252
+Nº subredes: 64
+Nº direcciones host: (2 ^ 10)
+Nº direcciones disponibles: (2 ^ 10) - 2
+Nº bits robados: 6
+
+10)Número de hosts necesarias: 60
+Dirección:198.100.10.0
+
+Dirección clase: C 
+Máscara subred default: 255.255.255.0
+Máscara subred personalizada: 255.255.255.192
+Nº subredes: 4
+Nº direcciones host: (2 ^ 6)
+Nº direcciones disponibles: (2 ^ 6) - 2
+Nº bits robados: 2
+
+11)Número de subredes necesarias: 250
+Dirección:101.0.0.0
+
+Dirección clase: A 
+Máscara subred default: 255.0.0.0
+Máscara subred personalizada: 255.255.0.0
+Nº subredes: 256
+Nº direcciones host: (2 ^ 16)
+Nº direcciones disponibles: (2^16) - 2
+Nº bits robados: 8
+
+12)Número de subredes necesarias: 5
+Dirección:218.35.50.0
+
+Dirección clase: C 
+Máscara subred default: 255.255.255.0
+Máscara subred personalizada: 255.255.255.224
+Nº subredes: 6
+Nº direcciones host: (2 ^ 5)
+Nº direcciones disponibles: (2 ^ 5) - 2
+Nº bits robados: 3
+
+13)Número de subredes necesarias: 25 
+Dirección: 218.35.50.0
+
+Dirección clase:  C
+Máscara subred default: 255.255.255.0
+Máscara subred personalizada: 255.255.255.248
+Nº subredes: 32
+Nº direcciones host:(2^5)
+Nº direcciones disponibles: (2^5)-2
+Nº bits robados: 5
+
+14)Número de subredes necesarias:10
+Dirección: 172.59.0.0
+
+Dirección clase:  B
+Máscara subred default: 255.255.0.0
+Máscara subred personalizada: 255.255.240.0
+Nº subredes: 16
+Nº direcciones host: (2^4)
+Nº direcciones disponibles: (2^4)-2
+Nº bits robados: 4
+
+15)Número de subredes necesarias: 50
+Dirección:172.59.0.0
+
+Dirección clase: B
+Máscara subred default: 255.255.0.0
+Máscara subred personalizada: 255.255.252.0
+Nº subredes: 64
+Nº direcciones host: (2^6)
+Nº direcciones disponibles: (2^6)-2
+Nº bits robados:6
+
+16)Número de subredes necesarias:29
+Dirección: 23.0.0.0
+
+Dirección clase:  A
+Máscara subred default: 255.0.0.0
+Máscara subred personalizada: 255.248
+Nº subredes: 32
+Nº direcciones host:(2^5) 
+Nº direcciones disponibles:(2^5)-2 
+Nº bits robados:5 

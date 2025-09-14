@@ -1,0 +1,7 @@
+#!/bin/bash
+
+clear
+
+num=$(sudo find /etc/ | wc -l)
+
+echo "Etc contiene $num de ficheros y directorios"

