@@ -1,0 +1,13 @@
+secreto = set()
+intentos = set()
+
+intentos.add('c')
+intentos.add('s')
+intentos.add('a')
+
+palabra = " "
+
+while not palabra.issubset(intentos):
+    palabra = input("Introduce una letra: \n")
+
+    intentos.add(palabra)

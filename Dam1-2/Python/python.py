@@ -1,0 +1,7 @@
+print("Hola mundo")
+print("Hola de nuevo")
+print("Me gusta teclear")
+# print("Es divertido")
+print("Otra línea más")
+print("Fin")
+print("Iván")
